@@ -1,0 +1,13 @@
+{{!< layout}}
+  {{#content "header"}}
+    <h1>Title</h1>
+    <p>Hello, welcome to {{title}}!</p>
+  {{/content}}
+
+  {{#content "main" mode="append"}}
+  <p>Dolor sit amet.</p>
+  {{/content}}
+
+  {{#content "footer" mode="prepend"}}
+  <p>MIT License</p>
+  {{/content}}
