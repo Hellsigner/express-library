@@ -11,3 +11,11 @@ body {
   margin: -15px 0 0 0;
   padding: 10px 0;
 }
+
+.container-login-centered {
+  margin: 100px auto;
+  width: 280px;
+}
+.form-login {
+  padding: 10px;
+}
