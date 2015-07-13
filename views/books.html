@@ -1,0 +1,57 @@
+{{!< layout}}
+
+{{#content "header" mode="append"}}
+ - Books
+{{/content}}
+
+{{#content "modals" mode="append"}}
+    {{> modals-books }}
+{{/content}}
+
+{{#content "main" mode="append"}}
+
+{{> toolbar-top-books }}
+
+<main>
+    <table id="grid-books">
+        <thead>
+        <tr>
+            <th data-dgrid-column='{ field: "id" }'>
+                ID
+            </th>
+            <th data-dgrid-column='{ field: "title" }'>
+                Title
+            </th>
+            <th data-dgrid-column='{ field: "authors", formatter: App.formatters.author }'>
+                Authors
+            </th>
+            <th data-dgrid-column='{ field: "year" }'>
+                Year
+            </th>
+            <th data-dgrid-column='{ field: "quantity", formatter: App.formatters.quantity }'>
+                Quantity
+            </th>
+            <th data-dgrid-column='{ field: "remaining", formatter: App.formatters.remaining }'>
+                Remaining
+            </th>
+            <th data-dgrid-column='{ formatter: App.formatters.actions }'>
+                Actions
+            </th>
+        </tr>
+        </thead>
+    </table>
+</main>
+{{/content}}
+
+
+{{#content "scripts-bottom" mode="append"}}
+<script src="/js/books.js"></script>
+<script>
+    require([
+        './js/modules/grid_books.js'   // todo: domReady!
+    ], function (Books) {
+        var books = new Books();
+        console.log('Yeah, it\'s loaded!', Books);
+    });
+</script>
+{{/content}}

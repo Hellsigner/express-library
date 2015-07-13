@@ -1,0 +1,13 @@
+body {
+  padding: 20px 60px;
+}
+.profile-links {
+  text-align: right;
+}
+.profile-links a:link, a:visited {
+  color: #255625;
+}
+.container-fluid.toolbar {
+  margin: -15px 0 0 0;
+  padding: 10px 0;
+}
