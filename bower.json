@@ -1,0 +1,23 @@
+{
+  "name": "layout",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Hellsigner/express-library",
+  "authors": [
+    "Dmitry <hellsigner@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "noty": "~2.3.5",
+    "jquery-form": "~3.46.0",
+    "dgrid": "~0.4.0",
+    "lodash": "~3.10.0"
+  }
+}
