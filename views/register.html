@@ -1,34 +1,29 @@
 {{!< layout-bare}}
 
 {{#content "header" mode="append"}}
-- Login
+- Register
 {{/content}}
 
 {{#content "main" mode="append"}}
 <main class="container-fluid container-login-centered">
     <div class="panel panel-info">
         <div class="panel-heading">
-            <h3 class="panel-title">Log in</h3>
+            <h3 class="panel-title">Sign in</h3>
         </div>
         <div class="panel-body">
-            <form id="form-login" class="form-login" action="/user/login" method="post">
-                <div class="form-group {{#if messages}} has-error {{/if}}">
+            <form id="form-login" class="form-login" action="/register" method="post">
+                <div class="form-group has-error">
                     <label for="field-login" class="control-label">
                         <span>Username:</span>
-                        <input type="text" class="form-control" id="field-login" name="username"/>
+                        <input type="text" class="form-control has-error" id="field-login" name="username"/>
                     </label>
                 </div>
-                <div class="form-group {{#if messages}} has-error {{/if}}">
+                <div class="form-group">
                     <label for="field-password" class="control-label">
                         <span>Password:</span>
                         <input type="text" class="form-control" id="field-password" name="password"/>
                     </label>
                 </div>
-                {{#if messages}}
-                    {{#each messages}}
-                    <div style="color: red; padding: 0 10px 10px 10px">{{this}}</div>
-                    {{/each}}
-                {{/if}}
                 <div class="form-button">
                     <button type="submit" class="btn btn-primary">Enter</button>
                 </div>

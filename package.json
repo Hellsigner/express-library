@@ -17,7 +17,15 @@
     "serve-favicon": "~2.3.0",
     "nconf": "~0.7.1",
     "handlebars-layouts": "~3.1.0",
-    "express-hbs": "~0.8.4"
+    "express-hbs": "~0.8.4",
+    "express-session": "~1.11.3",
+    "passport": "~0.2.2",
+    "passport-local": "~1.0.0",
+    "mongoose": "~4.0.7",
+    "passport-local-mongoose": "~1.0.1",
+    "bcrypt-nodejs": "0.0.3",
+    "mysql": "~2.8.0",
+    "bookshelf": "~0.8.1"
   },
   "author": "Dmitry Prokopenko",
   "license": "MIT",
