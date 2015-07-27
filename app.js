@@ -4,10 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash = require('connect-flash');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var passport = require('passport');
+var passportLocal = require('passport-local');
+
+var indexRoute = require('./routes/index');
+var redirectsRoute = require('./routes/redirects');
 var booksRoute = require('./routes/books');
+var userRoute = require('./routes/user');
 
 var app = express();
 
@@ -35,12 +40,50 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash());
+
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', routes); // todo: redirect to login or books page.
-app.use('/users', users);
+//var Account = require('./models/account');
+
+passport.use(new passportLocal.Strategy(function(username, password, done) {
+  if (username === password) {
+    return done(null, {id: 1, username: username, password: password});
+  } else {
+    console.log('Noooooooooooooo');
+    return done(null, false, {message: 'Invalid credentials'});
+  }
+}));
+
+passport.serializeUser(function(user, done) {
+  return done(null, JSON.stringify(user));
+});
+passport.deserializeUser(function(serialized, done) {
+  return done(null, JSON.parse(serialized));
+});
+
+
+app.use('/', redirectsRoute);
+app.use('/', indexRoute); // todo: redirect to login or books page.
+app.use('/user', userRoute);
+
+// protected resources
+app.use(function(req, res, next) {
+  if (!req.user) {
+    return res.redirect('/login');
+  }
+  next();
+});
 app.use('/books', booksRoute);
-app.use('/login', require('./routes/login')); // fixme: stub
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
