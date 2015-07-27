@@ -1,0 +1,21 @@
+{{!< layout-bare}}
+
+{{#content "header" mode="append"}}
+- Login
+{{/content}}
+
+{{#content "main" mode="append"}}
+    {{#if user}}
+<p>You are currently logged in as {{user.username}}</p>
+<a href="/logout">Logout</a>
+    {{else}}
+<a href="/login">Login</a> <br/>
+<a href="/register">Register</a>
+    {{/if}}
+{{/content}}
+
+{{#content "scripts-bottom" mode="append"}}
+<script>
+
+</script>
+{{/content}}

@@ -1,0 +1,9 @@
+{
+  "db": {
+    "host": "localhost",  // your host
+    "user": "root", // your database user
+    "password": "eXodus1313", // your database password
+    "database": 'dbUsers',
+    "charset": 'UTF8_GENERAL_CI'
+  }
+}
