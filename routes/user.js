@@ -4,6 +4,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/login', function(req, res, next) {
+  if (req.user) {
+      return res.redirect('/');
+  }
   res.render('login', {messages: req.flash('error')});
 });
 
