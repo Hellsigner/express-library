@@ -13,7 +13,6 @@ router.route('/books')
         var err = new Error('Bad request');
         err.status = 400;
         return next(err);
-        res.send('Hello!');
     })
     .post(function(req, res, next) {
         res.end(501);
@@ -21,16 +20,34 @@ router.route('/books')
     .options(function(req, res, next) {
         res.end(200);
     })
-    .post(function(req, res, next) {
+    .all(function(req, res, next) {
+        res.end(405);
+    });
+
+router.route('/books/:id(\\d+)')
+    .get(function (req, res, next) {
+        res.send('id: ' + req.params.id);
+    })
+    .put(function(req, res, next) {
         res.end(501);
+    })
+    .patch(function(req, res, next) {
+        res.end(405);
     })
     .all(function(req, res, next) {
         res.end(405);
     });
 
+// 404 handler
+router.use(function(req, res, next) {
+    var err = new Error('Not found');
+    err.status = 404;
+    return next(err);
+});
+
 // development error handler
 // will print stacktrace
-//if (router.get('env') === 'development') {
+if (router.get('env') === 'development') {
     router.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.send({
@@ -38,17 +55,17 @@ router.route('/books')
             error: err
         });
     });
-//}
+}
 
 // production error handler
 // no stacktraces leaked to user
-//router.use(function (err, req, res, next) {
-//    res.status(err.status || 500);
-//    res.send({
-//        message: err.message,
-//        error: err
-//    });
-//});
+router.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.send({
+        message: err.message,
+        error: err
+    });
+});
 
 module.exports = router;
 
