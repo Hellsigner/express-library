@@ -2,12 +2,5 @@
  * Created by hellsigner on 16.07.15.
  */
 
-var nconf = require('nconf');
-var path = require('path');
-
-nconf.env()
-    .argv()
-    .file({file: path.join(__dirname, 'global.json')})
-    .load();
-
-module.exports = nconf;
+var env = process.env.NODE_ENV || 'development';
+module.exports = require('./config.json')[env];
