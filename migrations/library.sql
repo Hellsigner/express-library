@@ -9,7 +9,7 @@ USE `library` ;
 -- Table `library`.`watchers`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library`.`watchers` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NULL,
   `full_name` VARCHAR(45) NULL,
   `password` VARCHAR(100) NULL,
@@ -21,7 +21,7 @@ ENGINE = InnoDB;
 -- Table `library`.`pupils`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library`.`pupils` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(45) NULL,
   `form` VARCHAR(10) NULL,
   PRIMARY KEY (`id`))
@@ -62,7 +62,7 @@ CREATE INDEX `fk_books_idx` ON `library`.`books_authors` (`books_id` ASC);
 -- Table `library`.`books_types`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `library`.`books_types` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
