@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 
+var config = require(__dirname + '/config');
+
 var passport = require('passport');
 var passportLocal = require('passport-local');
 
@@ -15,6 +17,7 @@ var booksRoute = require('./routes/books');
 var userRoute = require('./routes/user');
 
 var models = require('./models');
+
 var passwordService = require('./service/password');
 
 
@@ -56,8 +59,6 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-//var Account = require('./models/account');
-
 passport.use(new passportLocal.Strategy(function (username, pass, done) {
     console.log('username:', username, 'pass:', pass);
     if (!username || !pass) {
@@ -68,7 +69,7 @@ passport.use(new passportLocal.Strategy(function (username, pass, done) {
     models.User.findOne({where: {username: username}}).then(function (user) {
         console.log('found:', user);
         if (user && res === user.password) {
-            return done(null, {id: 1, username: username});
+            return done(null, user);
         }
         return done(null, false, {message: 'Invalid credentials'});
     });
@@ -84,7 +85,7 @@ passport.deserializeUser(function (serialized, done) {
 
 
 app.use('/', redirectsRoute);
-app.use('/', indexRoute); // todo: redirect to login or books page.
+app.use('/', indexRoute);
 app.use('/user', userRoute);
 
 // protected resources
