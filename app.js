@@ -15,6 +15,7 @@ var indexRoute = require('./routes/index');
 var redirectsRoute = require('./routes/redirects');
 var booksRoute = require('./routes/books');
 var userRoute = require('./routes/user');
+var apiRoute = require('./routes/api');
 
 var models = require('./models');
 
@@ -87,6 +88,7 @@ passport.deserializeUser(function (serialized, done) {
 app.use('/', redirectsRoute);
 app.use('/', indexRoute);
 app.use('/user', userRoute);
+app.use('/api', apiRoute);
 
 // protected resources
 app.use(function (req, res, next) {
